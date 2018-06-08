@@ -14,9 +14,9 @@ class Fields
     /**
      * Session constructor.
      */
-    public function __construct()
+    public function __construct($userId = null)
     {
-        $this->request = app(FieldRequest::class);
+        $this->request = app(FieldRequest::class, ["userId" => $userId]);
     }
 
     /**

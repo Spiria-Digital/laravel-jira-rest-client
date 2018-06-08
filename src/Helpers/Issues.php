@@ -14,9 +14,9 @@ class Issues
     /**
      * Session constructor.
      */
-    public function __construct()
+    public function __construct($userId = null)
     {
-        $this->request = app(IssueRequest::class);
+        $this->request = app(IssueRequest::class, ["userId" => $userId]);
     }
 
     /**

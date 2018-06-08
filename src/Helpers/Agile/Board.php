@@ -22,10 +22,10 @@ class Board
      *
      * @param $boardId
      */
-    public function __construct($boardId)
+    public function __construct($boardId, $userId = null)
     {
         $this->boardId = $boardId;
-        $this->request = app(BoardRequest::class);
+        $this->request = app(BoardRequest::class, ["userId" => $userId]);
     }
 
     /**

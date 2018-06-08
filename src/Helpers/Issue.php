@@ -22,10 +22,11 @@ class Issue
      *
      * @param int|string $issueIdOrKey
      */
-    public function __construct($issueIdOrKey)
+    public function __construct($issueIdOrKey, $userId = null)
     {
-        $this->request = app(IssueRequest::class);
+        $this->request = app(IssueRequest::class, ["userId" => $userId]);
         $this->issueIdOrKey = $issueIdOrKey;
+
     }
 
     /**

@@ -22,10 +22,10 @@ class Sprint
      *
      * @param int $sprintId
      */
-    public function __construct($sprintId)
+    public function __construct($sprintId, $userId = null)
     {
         $this->sprint = $sprintId;
-        $this->request = app(SprintRequest::class);
+        $this->request = app(SprintRequest::class, ["userId" => $userId]);
     }
 
     /**
