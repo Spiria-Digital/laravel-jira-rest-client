@@ -23,13 +23,15 @@ abstract class AbstractRequest
      * @var array
      */
     protected $middleware = [];
+    protected $userId;
 
     /**
      * BaseRequest constructor.
      */
-    public function __construct()
+    public function __construct($userId = null)
     {
         $this->middleware = config('atlassian.jira.client_options', []);
+        $this->userId = $userId;
     }
 
     /**
@@ -44,6 +46,7 @@ abstract class AbstractRequest
                 'Accept'       => 'application/json',
                 'Content-Type' => 'application/json',
             ],
+            'userId' => $this->userId
         ];
 
         // Pipe the options through all middleware defined in the config

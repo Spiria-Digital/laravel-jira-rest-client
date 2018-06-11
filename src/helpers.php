@@ -6,8 +6,8 @@ if (! function_exists('jira')) {
      *
      * @return \Atlassian\JiraRest\Helpers\Jira
      */
-    function jira()
+    function jira($userId = null)
     {
-        return app(\Atlassian\JiraRest\Helpers\Jira::class);
+        return app(\Atlassian\JiraRest\Helpers\Jira::class, ["userId" => $userId]);
     }
 }

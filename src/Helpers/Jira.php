@@ -6,12 +6,18 @@ use Atlassian\JiraRest\Requests\ServerInfoRequest;
 
 class Jira
 {
+    protected $userId;
+
+    public function __construct($userId = null)
+    {
+        $this->userId = $userId;
+    }
     /**
      * @return \Atlassian\JiraRest\Helpers\Session
      */
     public function session()
     {
-        return new Session;
+        return new Session($this->userId);
     }
 
     /**
@@ -19,7 +25,7 @@ class Jira
      */
     public function projects()
     {
-        return new Projects;
+        return new Projects($this->userId);
     }
 
     /**
@@ -27,7 +33,7 @@ class Jira
      */
     public function issues()
     {
-        return new Issues;
+        return new Issues($this->userId);
     }
 
     /**
@@ -37,7 +43,7 @@ class Jira
      */
     public function issue($issueIdOrKey)
     {
-        return new Issue($issueIdOrKey);
+        return new Issue($issueIdOrKey, $this->userId);
     }
 
     /**
@@ -45,7 +51,7 @@ class Jira
      */
     public function fields()
     {
-        return new Fields;
+        return new Fields($this->userId);
     }
 
     /**
@@ -53,7 +59,7 @@ class Jira
      */
     public function agile()
     {
-        return new Agile;
+        return new Agile($this->userId);
     }
 
     /**

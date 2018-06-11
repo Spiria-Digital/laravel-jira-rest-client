@@ -8,12 +8,19 @@ use Atlassian\JiraRest\Helpers\Agile\Sprint;
 
 class Agile
 {
+    protected $userId;
+
+    public function __construct($userId = null)
+    {
+        $this->userId = $userId;
+    }
+
     /**
      * @return \Atlassian\JiraRest\Helpers\Agile\Boards
      */
     public function boards()
     {
-        return new Boards;
+        return new Boards($this->userId);
     }
 
     /**
@@ -23,7 +30,7 @@ class Agile
      */
     public function board($boardId)
     {
-        return new Board($boardId);
+        return new Board($boardId, $this->userId);
     }
 
     /**
@@ -33,6 +40,6 @@ class Agile
      */
     public function sprint($sprintId)
     {
-        return new Sprint($sprintId);
+        return new Sprint($sprintId, $this->userId);
     }
 }
